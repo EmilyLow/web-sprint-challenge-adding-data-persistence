@@ -15,4 +15,14 @@ router.get("/resources", async (req,res,next) => {
     }
 })
 
+router.post("/resources", async(req, res, next) => {
+    try{
+        const answer = await Resource.addResource(req.body)
+        res.json("success")
+    }
+    catch(err) {
+        next(err);
+    }
+})
+
 module.exports = router;

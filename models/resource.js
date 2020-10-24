@@ -6,7 +6,7 @@ function getResources() {
 
 function addResource(data) {
 
-    return db("schemes").insert(data);
+    return db("resources").insert(data);
 }
 
 module.exports = {
