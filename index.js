@@ -3,7 +3,7 @@
 const express = require("express")
 // const helmet = require("helmet")
 //Routers
-// const recipeRouter = require("./recipe-router");
+const resourceRouter = require("./routers/resource");
 
 
 const server = express()
@@ -13,7 +13,7 @@ const port = process.env.PORT || 5000
 server.use(express.json())
 
 //Use routers
-// server.use(recipeRouter);
+server.use(resourceRouter);
 
 server.use((err, req, res, next) => {
 	console.log(err)
