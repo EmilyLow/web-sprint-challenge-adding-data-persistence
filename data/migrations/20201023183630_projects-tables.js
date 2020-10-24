@@ -28,25 +28,22 @@ exports.up = async function(knex) {
         table.integer("completed").defaultTo("0");
     })
   
-    await knex.schema.createTable("recipe_ingredients", (table) => {
+    await knex.schema.createTable("project_resources", (table) => {
         table
-          .integer("recipe_id")
+          .integer("project_id")
           .references("id")
-          .inTable("recipes")
+          .inTable("projects")
           .onDelete("CASCADE")
           .onUpdate("CASCADE")
           .notNull()
         table 
-          .integer("ingredient_id")
+          .integer("resource_id")
           .references("id")
-          .inTable("ingredients")
+          .inTable("resources")
           .onDelete("CASCADE")
           .onUpdate("CASCADE")
           .notNull()
-      table
-          .real("quantity")
-          .notNull()
-      table.primary(["recipe_id", "ingredient_id"])
+      table.primary(["project_id", "resource_id"])
   
     })
   };
@@ -54,9 +51,9 @@ exports.up = async function(knex) {
   
   
   exports.down = async function(knex) {
-    await knex.schema.dropTableIfExists("recipe_ingredients")
-    await knex.schema.dropTableIfExists("steps")
-    await knex.schema.dropTableIfExists("ingredients")
-    await knex.schema.dropTableIfExists("recipes")
+    await knex.schema.dropTableIfExists("project_resources")
+    await knex.schema.dropTableIfExists("tasks")
+    await knex.schema.dropTableIfExists("resources")
+    await knex.schema.dropTableIfExists("projects")
   };
   
